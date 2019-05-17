@@ -16,3 +16,5 @@ The spider name is: sanban
 
 > Enter path to download into: /home/adama/Downloads/temp/
 
+##### Demonstration Video
+[Santabanta Scrape Demonstration Video](https://youtu.be/q_UiWO1kxK8)
