@@ -4,7 +4,7 @@ from scrapy.pipelines.images import ImagesPipeline
 from scrapy.exceptions import DropItem
 from subprocess import run
 from time import sleep
-from sb.items import ImageScrapeItem
+from sanban.items import ImageScrapeItem
 from time import sleep
 import urllib.request
 
@@ -12,16 +12,18 @@ id = input("Enter starting URL: ")
 in_path = input("Enter path to download into: ")
 
 class SanbanSpider(scrapy.Spider):
-    name = 'sanban'
+    name = 'sb'
     allowed_domains = ['santabanta.com']
     start_urls = [id]
+    urls = []
 
     def parse_page2(self, response):
     	img_url = response.xpath('//*[@id="wall"]/@src').extract_first()
     	arr = img_url.split('/')
     	path = in_path + arr[len(arr)-1]
-    	sleep(2)
     	urllib.request.urlretrieve(img_url, path)
+    	self.urls.append(img_url)
+    	print(self.urls)
     	# yield {'img_url': [img_url]}
 
 
@@ -44,4 +46,8 @@ class SanbanSpider(scrapy.Spider):
         if next!='disabled':
         	next_pg_url = 'http://www.santabanta.com' + response.xpath('//*[@class="tsc_pagination tsc_paginationA tsc_paginationA08"]/li[last()]/a/@href').extract_first()
         yield scrapy.Request(next_pg_url, dont_filter=True)
-        sleep(5)
+
+        # items["image_urls"] = self.urls
+        # print(items)
+        # # return items
+        # yield ImageScrapeItem(file_urls=self.urls)

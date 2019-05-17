@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Scrapy settings for sb project
+# Scrapy settings for sanban project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -9,14 +9,15 @@
 #     https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'sb'
+BOT_NAME = 'sanban'
 
-SPIDER_MODULES = ['sb.spiders']
-NEWSPIDER_MODULE = 'sb.spiders'
-
-
+SPIDER_MODULES = ['sanban.spiders']
+NEWSPIDER_MODULE = 'sanban.spiders'
+ITEM_PIPELINES = {'scrapy.pipelines.images.ImagesPipeline': 1, 'scrapy.pipelines.images.FilesPipeline': 1}
+IMAGES_STORE = "/home/adama/Documents/(2) Programs/Python Programming/Scrapy/sanban/images"
+FILES_STORE = "/home/adama/Documents/(2) Programs/Python Programming/Scrapy/sanban/images"
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'sb (+http://www.yourdomain.com)'
+#USER_AGENT = 'sanban (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
@@ -47,13 +48,13 @@ ROBOTSTXT_OBEY = True
 # Enable or disable spider middlewares
 # See https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'sb.middlewares.SbSpiderMiddleware': 543,
+#    'sanban.middlewares.SanbanSpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    'sb.middlewares.SbDownloaderMiddleware': 543,
+#    'sanban.middlewares.SanbanDownloaderMiddleware': 543,
 #}
 
 # Enable or disable extensions
@@ -65,7 +66,7 @@ ROBOTSTXT_OBEY = True
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 #ITEM_PIPELINES = {
-#    'sb.pipelines.SbPipeline': 300,
+#    'sanban.pipelines.SanbanPipeline': 300,
 #}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
